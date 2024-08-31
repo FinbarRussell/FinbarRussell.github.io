@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Hundred</title>
+    <link rel="stylesheet" href="FiveHundred.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="FiveHundred.js"></script>
+</head>
+<body>
+    <div class="main">
+    <div class="info-bar">
+        <div>
+            <p> <strong>Game Scores</strong></p>
+            <p id="blueTeam-scores">Blue Team Score: </p>
+            <p id="redTeam-scores">Red Team Score: </p>
+        </div>
+        <div>
+            <p><strong>Hand Info</strong></p>
+            <p id="trumps-are"> Trumps: </p>
+            <p id="winning-bet-team"> Team to Win: </p>
+            <p id="tricks-needed">Tricks needed: </p>
+        </div>
+        <div>
+            <p><strong>Tricks Won</strong></p>
+            <p id="blue-team-tricks">Blue Team Tricks: </p>
+            <p id="red-team-tricks">Red Team Tricks: </p>
+        </div>
+        <div>
+            <p><strong>Game Rules</strong></p>
+            <p id="popupText">
+                Click To View the Rules
+            </p>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h1>Game Rules</h1>
+                    <p><strong>500</strong> is a trick-taking game similar to Whist.</p>
+                    <h2>Betting</h2>
+                    <p>Each round, a player places a bet. This <strong>determines</strong> which suit will become trumps and also sets the number of tricks a team must win in order to gain the relevant points, up to a maximum of 500 for all 10 tricks won with no trumps.</p>
+                    <p>Clubs are worth 60, Spades 70, Diamonds 80, Hearts 90, and No Trumps 100. For each number of tricks over 6, 100+ is added to the bet.</p>
+                    <p>If, after 10 tricks, a team does not achieve their bet number of tricks, the points are deducted from their score instead of being added.</p>
+                    <p>The team that did not win the bet will have 10+ points added for each trick they won, up to a maximum of 10.</p>
+                    <p>Upon reaching 500, a team wins. If a team reaches -500, they lose.</p>
+                    <h2>Trumps</h2>
+                    <p>Once a bet has been made, the suit called becomes trumps. If no trumps are selected, then no suit will be trumps.</p>
+                    <p>The <strong>Joker</strong> card is considered a trump card and is the highest card in 500.</p>
+                    <h3>Bowers</h3>
+                    <p>Jacks have a special role in 500. The Jack of the trump suit becomes the <strong>right bower</strong> and ranks second highest, below the Joker.</p>
+                    <p>The Jack with the same colour but different suit to trumps becomes the <strong>left bower</strong>. For example, when Hearts are trumps, the Jack of Diamonds becomes the left bower.</p>
+                    <p>The left bower is the third highest-ranking card.</p>
+                    <p>All other cards are ranked as usual: number cards are beaten by the Queen, which is beaten by the King, which is beaten by the Ace.</p>
+                    <h2>Tricks</h2>
+                    <p>The winner of a trick is the player who plays the highest card.</p>
+                    <p>The player must follow the first suit played if possible. If they do not have this suit, they may play any card.</p>
+                    <p>If a card is played off-suit, i.e., Spades are played but the player has no Spades and plays a Club, then they cannot win unless it is a trump card.</p>
+                    <p>If a trump is played off-suit, then it will automatically win unless another trump that is higher is played.</p>
+                    <p>In No Trumps, the Joker is the only card that can be played off-suit and still win.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="table-container">
+            <div style="display: grid">
+            <p class="blue-team" style="justify-self: center;display: grid;"><strong>Teammate</strong> </p>
+            <div id="teammate-cards" style="align-self: center; justify-self: center;">
+                <img id="hidden" class="hidden-card" style="align-self: self-start;" src="./characters/teammate.png">
+            </div>
+        </div>
+        <div class="second-row" style="display: grid;">
+            <div id="opponent2-cards" class="second-row-item" style="display: grid;">
+                <p class="red-team" style="align-self: self-end;"><strong>Opponent</strong></p>
+                <img id="hidden" style="align-self: self-start;transform: rotate(0deg);" class="hidden-card" src="./characters/opponent1.png">
+            </div>
+            <div class="second-row-item">
+                <div id="trick-cards"></div>
+            </div>
+            <div id="opponent1-cards" class="second-row-item" style="display: grid;">
+                <p class="red-team" style="align-self: self-end;"> <strong>Opponent</strong></p>
+                <img id="hidden" style="align-self: self-start;transform: rotate(0deg);" class="hidden-card" src="./characters/opponent2.png">
+            </div>
+        </div>
+
+        <div class="popups-and-overlays">
+            <p id="results"></p>   
+            <div id="overlay"></div>
+            <div id="popup">
+                <p id="popup-text"></p>
+                <button id="continue-button">Continue</button>
+                <button id="next-hand-button">Deal Again</button>
+            </div>
+        </div>
+
+    </div>
+
+        <div style="display: grid;" style="align-items: center;">
+            <p class="blue-team" style="align-self: center;justify-self: center;"></p>
+            <div id="player-cards" style="align-self: center;justify-self: center;"></div>
+        </div>
+
+    </div>
+</body>
+</html>
