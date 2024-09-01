@@ -432,11 +432,11 @@ function waitForCard(currentSuit2) {
                 selectedCardCard = selectedCardCard.split(".")
                 selectedCardCard = selectedCardCard[0]
                 suit2 = selectedCard.src.split("-")
-                suit2 = suit2[1]
+                suit2 = suit2[2]
                 suit2 = suit2.split(".")
                 suit2 = suit2[0]
-                console.log(currentSuit2 + "this is the current suit in user click")
-                console.log(suit2 + "this is the selected cards suit")
+                //console.log(currentSuit2 + "this is the current suit in user click")
+                //console.log(suit2 + "this is the selected cards suit")
                 // filter out left bower if suit played is not trumps
                 if (currentSuit2 == trumps[0]){
                     hasCurrentSuit = playersHands["player"].some(str => str.includes(currentSuit2) || str.includes(leftBower[trumps])|| str.includes("JOKER-N"));              
@@ -489,7 +489,7 @@ async function playTrick() {
     let row;
     let col;
     for (i in players){
-        console.log(suit + " "+ players[i] + "this is suit just before players go")
+        //console.log(suit + " "+ players[i] + "this is suit just before players go")
         if (players[i] == "player") {
             row = 3; // Determine the row (1-3)
             col = 2;           // Determine the column (1-3)
@@ -546,7 +546,7 @@ async function playTrick() {
                     document.getElementById("trick-cards").appendChild(cardCell);
                 if ((playedCard != leftBower[trumps]) && (playedCard != "JOKER-N")){
                     suit = selectedCard.src.split("-")
-                    suit = suit[1]
+                    suit = suit[2]
                     suit = suit.split(".")
                     suit = suit[0]
                     ////console.log(suit)
@@ -561,7 +561,7 @@ async function playTrick() {
                 }
                 else if (playedCard == leftBower[trumps]){
                     suit = selectedCard.src.split("-")
-                    suit = suit[1]
+                    suit = suit[2]
                     suit = suit.split(".")
                     suit = suit[0]
                     suit = suitConversion[suit]
@@ -576,7 +576,7 @@ async function playTrick() {
                 playedCard = playedCard[playedCard.length - 1]
                 playedCard = playedCard.split(".")
                 playedCard = playedCard[0]
-                console.log(playedCard+ "this is the played card")
+                //console.log(playedCard+ "this is the played card")
                 trick["player"] = playedCard
                 const arrayToModify = playersHands["player"];
                 let indexToRemove = arrayToModify.indexOf(playedCard);
@@ -617,7 +617,7 @@ async function playTrick() {
                     else if (trumps[0] != "N"){
                         suit = trumps[0]
                     }
-                    console.log(suit +" this is the suit after opponent played their card"+ players[i])
+                    //console.log(suit +" this is the suit after opponent played their card"+ players[i])
                 }
 
                 else if (card == leftBower[trumps]){
@@ -628,7 +628,7 @@ async function playTrick() {
                 ////console.log(suit)
                 // add card to trick, and insert image of card
                 cardImg.src = "./cards/" + card + ".png";
-
+                //console.log(cardImg.src + "this is the opponents cards SRC")
                 if (players[i] == "opponent2") {
                     cardImg.style.transform = `rotate(${90}deg)`;
                     
