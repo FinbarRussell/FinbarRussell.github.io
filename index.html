@@ -5,8 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./website.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <script src="https://kit.fontawesome.com/62ff181649.js" crossorigin="anonymous"></script>
+<script src="./website.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -31,36 +33,28 @@ body, html {
 <body>
 
 <!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <a href="/" class="w3-bar-item w3-button w3-wide">WELCOME</a>
-    <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
-      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
-      <a href="#me" class="w3-bar-item w3-button"><i class="fa fa-user"></i> ME </a>
-      <a href="#work" class="w3-bar-item w3-button"><i class="fa fa-th"></i> WORK</a>
-      <a href="#projects" class="w3-bar-item w3-button"><i class="fa fa-code"></i> PROJECTS</a>
-      <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
-    </div>
-    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
-      <i class="fa fa-bars"></i>
-    </a>
+<div class="navbar">
+  <a href="/" class="brand">WELCOME</a>
+  <div class="nav-links">
+    <a href="#about">ABOUT</a>
+    <a href="#me"><i class="fa fa-user"></i> ME</a>
+    <a href="#work"><i class="fa fa-th"></i> WORK</a>
+    <a href="#projects"><i class="fa fa-code"></i> PROJECTS</a>
+    <a href="#contact"><i class="fa fa-envelope"></i> CONTACT</a>
+  </div>
+  <div class="menu-toggle">
+    <i class="fa fa-bars"></i>
   </div>
 </div>
 
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
-  <a href="#me" onclick="w3_close()" class="w3-bar-item w3-button">ME</a>
-  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
-  <a href="#projects" onclick="w3_close()"  class="w3-bar-item w3-button">PROJECTS</a>
-  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
-</nav>
-<!-- Header with full-height image -->
-<div>
+<div class="dropdown-content" id="dropdown">
+  <a href="#about">ABOUT</a>
+  <a href="#me"><i class="fa fa-user"></i> ME</a>
+  <a href="#work"><i class="fa fa-th"></i> WORK</a>
+  <a href="#projects"><i class="fa fa-code"></i> PROJECTS</a>
+  <a href="#contact"><i class="fa fa-envelope"></i> CONTACT</a>
+</div>
+
   <br>
   <br>
 </div>
@@ -224,7 +218,7 @@ body, html {
     </div>
     <div class="w3-quarter w3-center">
       <a href="FiveHundred.html" target="_blank">
-        <img src="cards/A-S.png" style="width:70%" class="w3-hover-opacity"> </a>
+        <img src="static/images/A-S.png" style="width:70%" class="w3-hover-opacity"> </a>
         <br>
       <p class="w3-center w3-large">javascript Card Game</p>
       <p class="w3-center w3-small">In progress</p>

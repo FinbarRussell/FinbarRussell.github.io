@@ -29,6 +29,14 @@ let suitWeight = {
     "D":2,
     "H":3
 }
+let orderedDecks = {
+    undefined:[ '4-C', '5-C', '6-C', '7-C', '8-C', '9-C', '10-C', 'J-C', 'Q-C', 'K-C', 'A-C', '4-D', '5-D', '6-D', '7-D', '8-D', '9-D', '10-D', 'J-D', 'Q-D', 'K-D', 'A-D', '4-H', '5-H', '6-H', '7-H', '8-H', '9-H', '10-H', 'J-H', 'Q-H', 'K-H', 'A-H', '6-S', '7-S', '8-S', '9-S', '10-S', 'J-S', 'Q-S', 'K-S', 'A-S', 'JOKER-N'],
+    "H":[ '4-C', '5-C', '6-C', '7-C', '8-C', '9-C', '10-C', 'J-C', 'Q-C', 'K-C', 'A-C', '4-D', '5-D', '6-D', '7-D', '8-D', '9-D', '10-D', 'Q-D', 'K-D', 'A-D', '6-S', '7-S', '8-S', '9-S', '10-S', 'J-S', 'Q-S', 'K-S', 'A-S', '4-H', '5-H', '6-H', '7-H', '8-H', '9-H', '10-H', 'Q-H', 'K-H', 'A-H', 'J-D', 'J-H', 'JOKER-N'],
+    "D":[ '4-C', '5-C', '6-C', '7-C', '8-C', '9-C', '10-C', 'J-C', 'Q-C', 'K-C', 'A-C', '4-H', '5-H', '6-H', '7-H', '8-H', '9-H', '10-H', 'Q-H', 'K-H', 'A-H', '6-S', '7-S', '8-S', '9-S', '10-S', 'J-S', 'Q-S', 'K-S', 'A-S', '4-D', '5-D', '6-D', '7-D', '8-D', '9-D', '10-D', 'Q-D', 'K-D', 'A-D', 'J-H', 'J-D', 'JOKER-N'],
+    "S":[ '4-C', '5-C', '6-C', '7-C', '8-C', '9-C', '10-C', 'Q-C', 'K-C', 'A-C', '4-D', '5-D', '6-D', '7-D', '8-D', '9-D', '10-D', 'J-D', 'Q-D', 'K-D', 'A-D', '4-H', '5-H', '6-H', '7-H', '8-H', '9-H', '10-H', 'J-H', 'Q-H', 'K-H', 'A-H', '6-S', '7-S', '8-S', '9-S', '10-S', 'Q-S', 'K-S', 'A-S', 'J-C', 'J-S', 'JOKER-N'],
+    "C":[ '4-D', '5-D', '6-D', '7-D', '8-D', '9-D', '10-D', 'J-D', 'Q-D', 'K-D', 'A-D', '4-H', '5-H', '6-H', '7-H', '8-H', '9-H', '10-H', 'J-H', 'Q-H', 'K-H', 'A-H', '6-S', '7-S', '8-S', '9-S', '10-S', 'Q-S', 'K-S', 'A-S', '4-C', '5-C', '6-C', '7-C', '8-C', '9-C', '10-C', 'Q-C', 'K-C', 'A-C', 'J-S', 'J-C', 'JOKER-N']
+
+}
 
 let trumpBower = leftBower[trumps]
 // for each hand update hashtable with new scores, if of suit 1,15, if trump +value, if bower add value, if not of suit 0 
@@ -110,7 +118,7 @@ function buildDeck() {
     }
     ////console.log(deck +" after no 4 blacks")
 
-    // ////console.log(deck);
+    console.log(deck);
 }
 
 
@@ -258,6 +266,7 @@ function dealHand() {
             };
         }
     }
+    rearrangeHand()
 }
        
 
@@ -337,9 +346,45 @@ async function selectBids() {
     }
     await waitForButtonClick()
     highestBid()
-    await waitForButtonClick()
+    rearrangeHand()
     playRound()
 }
+
+function rearrangeHand(){
+    // Get the container element
+    const container = document.getElementById('player-cards');
+    console.log(container + "container")
+    let trumpsOrderedDeck;
+    // Convert HTMLCollection to an array
+    const imagesArray = Array.from(container.getElementsByTagName('img'));
+    if (trumps != undefined){
+        trumpsOrderedDeck = orderedDecks[trumps[0]]
+    }
+    else if (trumps == undefined){
+        trumpsOrderedDeck = orderedDecks[trumps]
+    }
+
+    // Filter out images that match the desired order list
+    const filteredImages = imagesArray.filter(img => {
+        const cardIdentifier = img.src.split('/').pop().replace('.png', ''); // Extract '4-C', 'J-C', etc.
+        return trumpsOrderedDeck.includes(cardIdentifier);
+    });
+
+    // Sort the filtered images array according to the desired order
+    filteredImages.sort((a, b) => {
+        const aCardIdentifier = a.src.split('/').pop().replace('.png', '');
+        const bCardIdentifier = b.src.split('/').pop().replace('.png', '');
+        return trumpsOrderedDeck.indexOf(aCardIdentifier) - trumpsOrderedDeck.indexOf(bCardIdentifier);
+    });
+
+    // Clear the container
+    container.innerHTML = "";
+
+    // Append the filtered and sorted images back in the correct order
+    filteredImages.forEach(img => container.appendChild(img));
+};
+
+
 
 async function highestBid(){
     let temp = 0;
@@ -399,6 +444,9 @@ async function highestBid(){
     
     if (winner == "player"){
         document.getElementById("popup-text").append(" You've won the kitty, select three cards to remove.");
+        document.getElementById("continue-button").style.display = "none"
+        rearrangeHand()
+        
         for (let j = 0; j<3; j++) {
                 let cardImg = document.createElement("img");
                 let card = deck.pop();
@@ -414,6 +462,7 @@ async function highestBid(){
             i++
         }
         selectedCard = undefined
+        document.getElementById("popup-text").textContent = "Now play you card"
         await waitForButtonClick()
     }
 } 
@@ -799,6 +848,7 @@ function whoWonTrick(suit){
     let cardSuit;
     let temp = 0
     let winner;
+    document.getElementById("popup-text").textContent = ("")
     for (i in trick){
         data = trick[i].split("-"); // "4-C" -> ["4", "C"]
         value = data[0];
@@ -807,7 +857,8 @@ function whoWonTrick(suit){
             value = 1000
         }  
         if (trick[i] == leftBower[trumps]){
-            value = 140
+            value = 140;
+            
         }        
         if (cardSuit == trumps[0]){
             if (!(isNaN(value))) { // if its a trump card the value is increased by 10x to ensure it can only lose vs another higher trump
@@ -856,6 +907,12 @@ function whoWonTrick(suit){
         }
         ////console.log(value +" "+ cardSuit + " this was " + i)
     }
+    if (temp == 140){
+        document.getElementById("popup-text").textContent = "Left bower means "
+    }
+    if (temp == 150){
+        document.getElementById("popup-text").textContent = "Right bower means "
+    }
     return winner
 }
 
@@ -869,7 +926,7 @@ function updateTricksWon(suit) {
     }
     document.getElementById("blue-team-tricks").textContent = `Blue Team Tricks: ${tricksWon.blueTeam}`;
     document.getElementById("red-team-tricks").textContent = `Red Team Tricks: ${tricksWon.redTeam}`;
-    document.getElementById("popup-text").textContent = `${winner} wins the Trick`;
+    document.getElementById("popup-text").append(`${winner} wins the Trick`);
     return winner
 }
 
