@@ -177,7 +177,6 @@ function whoStarts() {
         let card = deck.pop();
         cards.push(card)
         cardImg.src = "./cards/" + card + ".png";
-        console.log(players[i] + card)
         document.getElementById(players[i]+"-cards").append(cardImg);
         if (cardValue(card) > temp) {
             temp = cardValue(card);
@@ -405,19 +404,15 @@ async function highestBid(){
         for (let j = 0; j<3; j++) {
                 let cardImg = document.createElement("img");
                 let card = deck.pop();
-                console.log(card)
-                console.log(cardImg)
                 cardImg.src = "./cards/" + card + ".png";
                 document.getElementById("player-cards").append(cardImg);
                 cardImg.alt = "Clickable Image";
                 cardImg.style.cursor = "pointer";
                 playersHands["player"].push(card)
-                console.log(playersHands["player"])
                 playCard(cardImg, card)
     }
         for (let i=0; i<3;){
             await waitOnCardToRemove()
-            console.log("first card removed")
             i++
         }
         selectedCard = undefined
@@ -434,7 +429,6 @@ function playCard(cardImg, card) {
     });
 }
 function waitForCardToRemove() {
-    console.log('waitOnCardToRemove called');
     return new Promise((resolve) => {
         const checkSelection3 = () => {
         if (selectedCard != undefined){ // card is of the current suit, or current suit undefined
@@ -458,8 +452,7 @@ function waitForCardToRemove() {
                 }
             }
             selectedCard = undefined
-            resolve();    
-            console.log('waitOnCardToRemove resolved');                
+            resolve();               
         }
         else {
         //////console.log(selectedBid + "2")
@@ -604,18 +597,20 @@ async function playTrick() {
                 if ((playedCard != leftBower[trumps]) && (playedCard != "JOKER-N")){
                     console.log(selectedCard)
                     suit = selectedCard.src.split("-")
-                    suit = suit[suit.length - 1]                   
-                    console.log(suit)
+                    suit = suit[suit.length - 1]  
                     suit = suit.split(".")
                     suit = suit[0]
+                    console.log(suit)
                     ////console.log(suit)
                 }
                 else if (playedCard == "JOKER-N"){
                     if (trumps[0] == "N"){
                         suit = undefined
+                        console.log(suit)
                     }
                     else if (trumps[0] != "N"){
                         suit = trumps[0]
+                        console.log(suit)
                     }
                 }
                 else if (playedCard == leftBower[trumps]){
@@ -668,14 +663,17 @@ async function playTrick() {
                 if ((card != leftBower[trumps]) || (card != "JOKER-N")){
                     suit = card.split("-")
                     suit = suit[1]
+                    console.log(suit)
                     ////console.log(suit)
                 }
                 else if (card == "JOKER-N"){
                     if (trumps[0] == "N"){
                         suit = undefined
+                        console.log(suit)
                     }
                     else if (trumps[0] != "N"){
                         suit = trumps[0]
+                        console.log(suit)
                     }
                     //console.log(suit +" this is the suit after opponent played their card"+ players[i])
                 }
@@ -684,6 +682,7 @@ async function playTrick() {
                 suit = card.split("-")
                 suit = suit[1]
                 suit = suitConversion[suit]
+                console.log(suit)
                 }
                 ////console.log(suit)
                 // add card to trick, and insert image of card
