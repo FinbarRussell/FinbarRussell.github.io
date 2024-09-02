@@ -493,8 +493,7 @@ function waitForCard(currentSuit2) {
                 selectedCardCard = selectedCardCard[selectedCardCard.length - 1]
                 selectedCardCard = selectedCardCard.split(".")
                 selectedCardCard = selectedCardCard[0]
-                suit2 = selectedCardCard.split("-")
-                suit2 = suit2[2]
+                suit2 = selectedCardCard.split("-")[1]
                 //console.log(currentSuit2 + "this is the current suit in user click")
                 //console.log(suit2 + "this is the selected cards suit")
                 // filter out left bower if suit played is not trumps
@@ -613,8 +612,7 @@ async function playTrick() {
                     document.getElementById("trick-cards").appendChild(cardCell);
                 if ((playedCard != leftBower[trumps]) && (playedCard != "JOKER-N")){
                     console.log(selectedCard)
-                    suit = selectedCard.src.split("-")
-                    suit = suit[2]
+                    suit = selectedCard.src.split("-")[1]
                     console.log(suit)
                     suit = suit.split(".")
                     suit = suit[0]
@@ -629,8 +627,7 @@ async function playTrick() {
                     }
                 }
                 else if (playedCard == leftBower[trumps]){
-                    suit = selectedCard.src.split("-")
-                    suit = suit[2]
+                    suit = selectedCard.src.split("-")[1]
                     suit = suit.split(".")
                     suit = suit[0]
                     suit = suitConversion[suit]
