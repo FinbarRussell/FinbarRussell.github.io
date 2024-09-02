@@ -3,7 +3,7 @@
     const dropdown = document.getElementById('dropdown');
     dropdown.classList.toggle('show');
   });
-
+/*
   // Close the dropdown if clicked outside
   window.onclick = function(event) {
     if (!event.target.matches('.menu-toggle') && !event.target.matches('.menu-toggle *')) {
@@ -12,4 +12,4 @@
         dropdown.classList.remove('show');
       }
     }
-  }
+  }*/
