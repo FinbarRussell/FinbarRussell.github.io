@@ -1,8 +1,17 @@
+  
+window.onload = function() {
+  openMenu()
+}
+  
   // handles the dropdown menu
-  document.querySelector('.menu-toggle').addEventListener('click', function() {
-    const dropdown = document.getElementById('dropdown');
-    dropdown.classList.toggle('show');
-  });
+  function openMenu(){
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      const dropdown = document.getElementById('dropdown');
+      console.log(dropdown)
+      dropdown.classList.toggle('show');
+    });
+  }
+
 /*
   // Close the dropdown if clicked outside
   window.onclick = function(event) {
