@@ -186,41 +186,39 @@ function whoStarts() {
         }       
         // convert card to value, store as temporary value alongside index, whoever has highest value is dealer, set person to dealer
     }
-    // ////console.log(temp)
-    //////console.log(winner)
-    //////console.log(players)
-    ////console.log(deck +" after draw")
     for (let i in cards){
-        ////console.log(cards[i])
-        // Generate a random index between 0 and the length of the array
         let randomIndex = Math.floor(Math.random() * deck.length);
 
-        // Insert 'grape' and 'kiwi' at the random index without replacing any elements
         deck.splice(randomIndex, 0, cards[i]);
     }
-    ////console.log(deck +" after reinsertion")
     rotate(players, -players.indexOf(winner))
-    // Return a Promise that resolves after the popup interaction is done
     return new Promise((resolve, reject) => {
-        // Assuming showPopupAndWait is async and calls a callback when done
         showPopupAndWait(players[0], () => {
-            // Resolve the Promise after the popup interaction
             resolve();
         });
     });
 }
 function removeCard() {
     for (let i in players) {
-        var container = document.getElementById(players[i]+"-cards"); // Get the container div
-        if (container.lastChild) { // Check if there is a last child
-            container.removeChild(container.lastChild); // Remove the last child element
-            //////console.log(container.lastChild)
-        } else {
-           // ////console.log("No elements to remove!");
-        }
-        }       
-        // convert card to value, store as temporary value alongside index, whoever has highest value is dealer, set person to dealer
-    }
+        var container = document.getElementById(players[i]+"-cards"); 
+        if (container.lastChild) { 
+            container.removeChild(container.lastChild);
+        } 
+    }       
+}
+
+function bestCardToPlay(){
+    //takes in the players hand
+    //takes in current suit
+    //takes in the current cards played in trick
+    //does player have suit? 
+        //if yes then does the player have a card that will win the trick from opposite team?
+            //if yes play card
+            //if no play lowest card
+        //if no then does the player have a trump card? 
+            //if yes then play lowest trump card that wins from the opposition team
+            //if no play lowest card
+}
 
 
 function showPopup(winner) {
@@ -228,20 +226,18 @@ function showPopup(winner) {
     document.getElementById("popup").style.display = "block";
 }
 
-// Function to hide the pop-up
 function hidePopup() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("popup").style.display = "none";
 }
 
 async function showPopupAndWait(winner) {
-    showPopup(winner); // Show the pop-up
+    showPopup(winner);
     await waitForButtonClick(); 
         removeCard();
         dealHand();
         addButtons()
         selectBids()
-// 5000 milliseconds = 5 seconds
 }
 
 function dealHand() {
@@ -257,19 +253,14 @@ function dealHand() {
                 cardImg.style.cursor = "pointer";
                 playersHands["player"].push(card)
                 playCard(cardImg, card)
-        // add value to object, compare
             }
-        if (players[i] != "player"){
-        let card = deck.pop();
-        temp.push(card)
-        playersHands[players[i]] = temp;            
-        };
-
-        
-
-            }
-            ////console.log(playersHands[players[i]])
+            if (players[i] != "player"){
+                let card = deck.pop();
+                temp.push(card)
+                playersHands[players[i]] = temp;            
+            };
         }
+    }
 }
        
 
@@ -612,7 +603,8 @@ async function playTrick() {
                     document.getElementById("trick-cards").appendChild(cardCell);
                 if ((playedCard != leftBower[trumps]) && (playedCard != "JOKER-N")){
                     console.log(selectedCard)
-                    suit = selectedCard.src.split("-")[1]
+                    suit = selectedCard.src.split("-")
+                    suit = suit[suit.length - 1]                   
                     console.log(suit)
                     suit = suit.split(".")
                     suit = suit[0]
@@ -627,10 +619,12 @@ async function playTrick() {
                     }
                 }
                 else if (playedCard == leftBower[trumps]){
-                    suit = selectedCard.src.split("-")[1]
+                    suit = selectedCard.src.split("-")
+                    suit = suit[suit.length - 1]      
                     suit = suit.split(".")
                     suit = suit[0]
                     suit = suitConversion[suit]
+                    console.log(suit)
                 }
                 selectedCard = undefined 
             }
