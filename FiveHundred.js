@@ -704,8 +704,9 @@ async function playTrick() {
         else if (players[i] != "player"){
             if (suit == undefined){
                 let cardImg = document.createElement("img");
-                let card = playersHands[players[i]].pop();
-                if ((card != leftBower[trumps]) || (card != "JOKER-N")){
+                let card = "J-S" //playersHands[players[i]].pop();
+                console.log(leftBower[trumps])
+                if ((card != leftBower[trumps]) && (card != "JOKER-N")){
                     suit = card.split("-")
                     suit = suit[1]
                     console.log(suit)
@@ -714,11 +715,11 @@ async function playTrick() {
                 else if (card == "JOKER-N"){
                     if (trumps[0] == "N"){
                         suit = undefined
-                        console.log(suit)
+
                     }
                     else if (trumps[0] != "N"){
                         suit = trumps[0]
-                        console.log(suit)
+
                     }
                     //console.log(suit +" this is the suit after opponent played their card"+ players[i])
                 }
@@ -727,7 +728,6 @@ async function playTrick() {
                 suit = card.split("-")
                 suit = suit[1]
                 suit = suitConversion[suit]
-                console.log(suit)
                 }
                 ////console.log(suit)
                 // add card to trick, and insert image of card
