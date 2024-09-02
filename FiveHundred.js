@@ -704,7 +704,7 @@ async function playTrick() {
         else if (players[i] != "player"){
             if (suit == undefined){
                 let cardImg = document.createElement("img");
-                let card = "J-S" //playersHands[players[i]].pop();
+                let card = playersHands[players[i]].pop();
                 console.log(leftBower[trumps])
                 if ((card != leftBower[trumps]) && (card != "JOKER-N")){
                     suit = card.split("-")
