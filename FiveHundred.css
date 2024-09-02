@@ -226,6 +226,10 @@ p {
     margin: 0; /* Remove any margin */
     transition: transform 0.3s ease;
 }
+.highlight {
+    font-weight: bold;
+    color: #B22222;
+}
 
 /* Adjust the positioning and rotation of each card */
 #player-cards img:nth-child(1) {
@@ -316,6 +320,33 @@ p {
 
 #player-cards img:nth-child(10):hover {
     transform: rotate(24deg) translateX(80%) translateY(-25px);
+}
+
+#player-cards img:nth-child(11) {
+    transform: rotate(26deg) translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+#player-cards img:nth-child(11):hover {
+    transform: rotate(26deg) translateX(100%) translateY(-25px);
+}
+
+#player-cards img:nth-child(12) {
+    transform: rotate(30deg) translateX(120%);
+    transition: transform 0.3s ease;
+}
+
+#player-cards img:nth-child(12):hover {
+    transform: rotate(30deg) translateX(120%) translateY(-25px);
+}
+
+#player-cards img:nth-child(13) {
+    transform: rotate(36deg) translateX(140%);
+    transition: transform 0.3s ease;
+}
+
+#player-cards img:nth-child(13):hover {
+    transform: rotate(36deg) translateX(140%) translateY(-25px);
 }
 
 

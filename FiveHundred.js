@@ -349,10 +349,11 @@ async function selectBids() {
     }
     await waitForButtonClick()
     highestBid()
+    await waitForButtonClick()
     playRound()
 }
 
-function highestBid(){
+async function highestBid(){
     let temp = 0;
     let winner;
     let suit;
@@ -406,6 +407,31 @@ function highestBid(){
     document.getElementById("trumps-are").append(trumps)
     document.getElementById("overlay").style.display = "block";
     document.getElementById("popup").style.display = "block";
+
+    
+    if (winner == "player"){
+        document.getElementById("popup-text").append(" You've won the kitty, select three cards to remove.");
+        for (let j = 0; j<3; j++) {
+                let cardImg = document.createElement("img");
+                let card = deck.pop();
+                console.log(card)
+                console.log(cardImg)
+                cardImg.src = "./cards/" + card + ".png";
+                document.getElementById("player-cards").append(cardImg);
+                cardImg.alt = "Clickable Image";
+                cardImg.style.cursor = "pointer";
+                playersHands["player"].push(card)
+                console.log(playersHands["player"])
+                playCard(cardImg, card)
+    }
+        for (let i=0; i<3;){
+            await waitOnCardToRemove()
+            console.log("first card removed")
+            i++
+        }
+        selectedCard = undefined
+        await waitForButtonClick()
+    }
 } 
 
 function playCard(cardImg, card) {
@@ -414,6 +440,42 @@ function playCard(cardImg, card) {
         selectedCard = cardImg;
 
        // ////console.log(document.getElementById("trick-cards"))
+    });
+}
+function waitForCardToRemove() {
+    console.log('waitOnCardToRemove called');
+    return new Promise((resolve) => {
+        const checkSelection3 = () => {
+        if (selectedCard != undefined){ // card is of the current suit, or current suit undefined
+            let selectedCardCard2 = selectedCard.src.split("/")
+            selectedCardCard2 = selectedCardCard2[selectedCardCard2.length - 1]
+            selectedCardCard2 = selectedCardCard2.split(".")
+            selectedCardCard2 = selectedCardCard2[0]
+            const arrayToModify = playersHands["player"];
+            let indexToRemove = arrayToModify.indexOf(selectedCardCard2);
+                if (indexToRemove !== -1) {
+                    // Remove the element at the found index
+                    playersHands["player"].splice(indexToRemove,1);
+                }
+            // ////console.log("Card Selected:", card);
+            const playersHand = document.querySelectorAll("#player-cards img"); // Use a more specific selector
+            const resultsElement = document.getElementById("player-cards"); // Get the parent element        
+            // Use a for...of loop to correctly iterate over the NodeList
+            for (const img of playersHand) {
+                if (img === selectedCard){
+                    resultsElement.removeChild(img);                    
+                }
+            }
+            selectedCard = undefined
+            resolve();    
+            console.log('waitOnCardToRemove resolved');                
+        }
+        else {
+        //////console.log(selectedBid + "2")
+        setTimeout(checkSelection3, 200); // Check again after 100ms
+        }
+    };
+    setTimeout(checkSelection3, 200);
     });
 }
 
@@ -431,10 +493,8 @@ function waitForCard(currentSuit2) {
                 selectedCardCard = selectedCardCard[selectedCardCard.length - 1]
                 selectedCardCard = selectedCardCard.split(".")
                 selectedCardCard = selectedCardCard[0]
-                suit2 = selectedCard.src.split("-")
+                suit2 = selectedCardCard.split("-")
                 suit2 = suit2[2]
-                suit2 = suit2.split(".")
-                suit2 = suit2[0]
                 //console.log(currentSuit2 + "this is the current suit in user click")
                 //console.log(suit2 + "this is the selected cards suit")
                 // filter out left bower if suit played is not trumps
@@ -474,6 +534,13 @@ function waitForCard(currentSuit2) {
 async function waitOnCard(currentSuit = undefined) {
     ////console.log("Waiting for button click...");
     await waitForCard(currentSuit); // Wait until selectedBid is set
+    ////console.log("Button was clicked, selected option:", selectedCard);
+    // Continue with the rest of your script here
+}
+
+async function waitOnCardToRemove() {
+    ////console.log("Waiting for button click...");
+    await waitForCardToRemove(); // Wait until selectedBid is set
     ////console.log("Button was clicked, selected option:", selectedCard);
     // Continue with the rest of your script here
 }
@@ -545,8 +612,10 @@ async function playTrick() {
                     // Append the cell to the trick-cards grid
                     document.getElementById("trick-cards").appendChild(cardCell);
                 if ((playedCard != leftBower[trumps]) && (playedCard != "JOKER-N")){
+                    console.log(selectedCard)
                     suit = selectedCard.src.split("-")
                     suit = suit[2]
+                    console.log(suit)
                     suit = suit.split(".")
                     suit = suit[0]
                     ////console.log(suit)
