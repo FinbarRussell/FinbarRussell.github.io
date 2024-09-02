@@ -165,8 +165,6 @@ var rotate = function(nums, k) {
 };
 
 function whoStarts() {
-    const button = document.getElementById("next-hand-button");
-    button.style.display = "none"; // Hide the button after click
     buildDeck()
     shuffleDeck()
     let temp = 0
@@ -530,8 +528,6 @@ async function waitOnCardToRemove() {
 
 
 async function playTrick() {
-    const button = document.getElementById("next-hand-button");
-    button.style.display = "none"; // Hide the button after click
     let j = 0;
     let suit;
     let condition;
@@ -885,7 +881,6 @@ function waitForButtonClick() {
             button.style.display = "none"; // Hide the button after click
             button.removeEventListener("click", handler); // Clean up the event listener
             resolve();
-            button.style.display = "none"; // Show the button
         });
     });
 }
@@ -894,12 +889,11 @@ function waitForButtonClick() {
 function secondwaitForButtonClick() {
     return new Promise((resolve) => {
         const button = document.getElementById("next-hand-button");
-        button.style.display = "block"; // Show the button
+        button.style.display = "none"; // Show the button
         button.addEventListener("click", function handler() {
             button.style.display = "none"; // Hide the button after click
             button.removeEventListener("click", handler); // Clean up the event listener
             resolve();
-            button.style.display = "none"; // Show the button
         });
     });
 }
@@ -953,8 +947,10 @@ async function playRound(){
 }
 
 async function main(){
-    while (((scores.redTeam ||  scores.blueTeam) < 500) && ((scores.redTeam ||  scores.blueTeam) > -500)){
+    while (((scores.redTeam &&  scores.blueTeam) < 500) && ((scores.redTeam &&  scores.blueTeam) > -500)){
         whoStarts();
+        let button = document.getElementById("next-hand-button");
+        button.style.display = "block"; // Hide the button after click
         await secondwaitForButtonClick()
     }
     if ((scores.redTeam >= 500 || scores.blueTeam <= -500 )){
@@ -963,8 +959,7 @@ async function main(){
     if ((scores.blueTeam >= 500 || scores.redTeam <= -500 )){
         document.getElementById(`popup-text`).textContent =  `Blue Team Wins!`;
     }
-    const button = document.getElementById("next-hand-button");
-    button.style.display = "none"; // Hide the button after click
+
 } 
 
 function openRules(){
