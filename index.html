@@ -4,7 +4,6 @@
 <title>Website</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="./website.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <script src="https://kit.fontawesome.com/62ff181649.js" crossorigin="anonymous"></script>
@@ -32,31 +31,19 @@ body, html {
 </head>
 <body>
 
-<!-- Navbar (sit on top) -->
-<div class="navbar">
-  <a href="/" class="brand">WELCOME</a>
-  <div class="nav-links">
-    <a href="#me"><i class="fa fa-user"></i> ME</a>
-    <a href="#work"><i class="fa fa-th"></i> WORK</a>
-    <a href="#projects"><i class="fa fa-code"></i> PROJECTS</a>
-    <a href="#contact"><i class="fa fa-envelope"></i> CONTACT</a>
+    <!-- Navbar (sit on top) -->
+    <div class="navbar">
+      <a href="/" class="brand">WELCOME</a>
+      <div class="nav-links" id="nav-links">
+          <a href="#me"><i class="fa fa-user"></i> ME</a>
+          <a href="#work"><i class="fa fa-th"></i> WORK</a>
+          <a href="#projects"><i class="fa fa-code"></i> PROJECTS</a>
+          <a href="#contact"><i class="fa fa-envelope"></i> CONTACT</a>
+      </div>
+      <div class="menu-toggle" id="menu-bar">
+          <i class="fa fa-bars"></i>
+      </div>
   </div>
-  <div class="menu-toggle" id="menu-bar">
-    <i class="fa fa-bars"></i>
-  </div>
-</div>
-
-<div class="dropdown-content" id="dropdown">
-  <a href="#about">ABOUT</a>
-  <a href="#me"><i class="fa fa-user"></i> ME</a>
-  <a href="#work"><i class="fa fa-th"></i> WORK</a>
-  <a href="#projects"><i class="fa fa-code"></i> PROJECTS</a>
-  <a href="#contact"><i class="fa fa-envelope"></i> CONTACT</a>
-</div>
-
-  <br>
-  <br>
-</div>
 
 <header src class="w3-display-container w3-grayscale-min" id="home"> 
   <img src='static/images/Galaxy - Copy.jpg' class="w3-display-center" width=100%>
@@ -213,33 +200,7 @@ body, html {
     <br> Photos from <a href="https://unsplash.com/" title="unsplahed.com" target="_blank" class="w3-hover-text-green">unsplash.com</a>
   </p>
 </footer>
- 
-<script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
 
-
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
-
-function w3_open() {
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'block';
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.style.display = "none";
-}
-</script>
 
 </body>
 </html>

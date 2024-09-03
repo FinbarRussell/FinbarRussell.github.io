@@ -1,15 +1,14 @@
   
 window.onload = function() {
   openMenu()
+
 }
-  
-  // handles the dropdown menu
+
   function openMenu(){
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-      const dropdown = document.getElementById('dropdown');
-      console.log(dropdown)
-      dropdown.classList.toggle('show');
-    });
+    document.getElementById('menu-bar').addEventListener('click', function() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('show');
+  });
   }
 
 /*
