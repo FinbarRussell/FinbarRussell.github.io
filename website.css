@@ -1,8 +1,11 @@
-body {
+body, html {
   margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: Arial, sans-serif;
+  color: white;
+  overflow-x: hidden;
 }
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -70,5 +73,170 @@ body {
 
   .nav-links.show {
       display: flex;
+  }
+}
+header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+
+header img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(60%);
+  z-index: 1;
+}
+
+header .content {
+  position: absolute;
+  top: 40%;
+  left: 2.5%;
+  transform: translateY(-40%);
+  z-index: 2;
+  max-width: 95%;
+  width: 95%;
+}
+
+header h1 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+header .sub-text {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+header .small-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+header .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: opacity 0.3s ease;
+}
+
+header .button:hover {
+  opacity: 0.7;
+}
+
+header .social-icons {
+  display: flex;
+  justify-content: right;
+  bottom: 20px;
+  z-index: 2;
+}
+
+header .social-icons a {
+  color: grey;
+  transform: translateY(-45%);
+
+  font-size: 1.5rem;
+  margin-left: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+header .social-icons a:hover {
+  color: white;
+}
+/* Basic styles for the section */
+.me-section {
+  padding: 64px 16px;
+  text-align: center;
+  background-color: #f4f4f4; /* Optional: change background color */
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 32px;
+  color: #555;
+}
+
+/* Card container */
+.card-container {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Profile card styling */
+.profile-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 50%;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-content h3 {
+  margin: 16px 0 8px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.job-title {
+  color: #777;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.contact-button {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #555;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .profile-card {
+    width: 90%;
+  }
+  
+  .profile-img {
+    width: 40%;
   }
 }
