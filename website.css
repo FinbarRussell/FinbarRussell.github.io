@@ -10,7 +10,7 @@ body, html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: #060b09;
   padding: 10px 20px;
   position: sticky;
   top: 0;
@@ -20,7 +20,7 @@ body, html {
 .brand {
   color: #fff;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 36px;
 }
 
 .nav-links {
@@ -78,6 +78,7 @@ body, html {
 header {
   position: relative;
   width: 100%;
+  min-width: 80%;
   height: 100vh;
   background: black;
   overflow: hidden;
@@ -162,6 +163,7 @@ header .social-icons a:hover {
 .section-title {
   font-size: 2rem;
   margin-bottom: 16px;
+  color: #333;
 }
 
 .section-subtitle {
@@ -239,4 +241,81 @@ header .social-icons a:hover {
   .profile-img {
     width: 40%;
   }
+}
+
+
+/* General Container Styling */
+.container {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Background Color for Projects Section */
+.light-background {
+  background-color: #f1f1f1;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Section Subtitle */
+.section-subtitle {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #777;
+}
+
+/* Row Styling */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Column Styling */
+.column {
+  flex: 1;
+  max-width: 25%;
+  padding: 0 15px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .column {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .column {
+    max-width: 100%;
+  }
+}
+
+/* Project Image Styling */
+.project-image {
+  width: 70%;
+  transition: opacity 0.3s ease;
+}
+
+.project-image:hover {
+  opacity: 0.7;
+}
+
+/* Project Title */
+.project-title {
+  font-size: 1.2em;
+  margin-top: 15px;
+  color: #333;
+}
+
+/* Project Description */
+.project-description {
+  font-size: 0.9em;
+  color: #777;
 }
