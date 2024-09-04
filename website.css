@@ -319,3 +319,81 @@ header .social-icons a:hover {
   font-size: 0.9em;
   color: #777;
 }
+/* Contact Section */
+.contact-container {
+  padding: 128px 16px;
+  background-color: #f1f1f1; /* light grey */
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2em;
+  margin-bottom: 16px;
+}
+
+.contact-subtitle {
+  font-size: 1.25em;
+  margin-bottom: 48px;
+}
+
+.contact-details {
+  margin-top: 48px;
+}
+
+.contact-icon {
+  font-size: 2em;
+  margin-right: 16px;
+}
+
+.contact-image {
+  width: 100%;
+  margin-top: 48px;
+  filter: grayscale(100%); /* greyscale effect */
+}
+
+/* Footer */
+.footer-container {
+  background-color: #000; /* black */
+  color: #fff;
+  padding: 64px;
+  text-align: center;
+}
+
+.footer-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f1f1f1; /* light grey */
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 24px;
+  font-size: 1em;
+}
+
+.footer-button i {
+  margin-right: 8px;
+}
+
+.social-icons {
+  font-size: 2em;
+  margin-bottom: 16px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 0.7;
+}
+
+.footer-link {
+  color: #32cd32; /* green */
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
