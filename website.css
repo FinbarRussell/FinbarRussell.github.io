@@ -278,9 +278,8 @@ header .social-icons a:hover {
 
 /* Column Styling */
 .column {
-  flex: 1;
   max-width: 25%;
-  padding: 0 15px;
+  padding: 10px 15px;
   margin-bottom: 40px;
   box-sizing: border-box;
 }
@@ -299,7 +298,7 @@ header .social-icons a:hover {
 
 /* Project Image Styling */
 .project-image {
-  width: 70%;
+  width: auto;
   transition: opacity 0.3s ease;
 }
 
@@ -323,6 +322,7 @@ header .social-icons a:hover {
 .contact-container {
   padding: 128px 16px;
   background-color: #f1f1f1; /* light grey */
+  color: #333;
   text-align: center;
 }
 
@@ -390,7 +390,7 @@ header .social-icons a:hover {
 }
 
 .footer-link {
-  color: #32cd32; /* green */
+  color: black; /* green */
   text-decoration: none;
 }
 
